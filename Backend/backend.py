@@ -1,4 +1,5 @@
 from flask import Flask
+import json
 
 app = Flask(__name__)
 
@@ -6,6 +7,10 @@ app = Flask(__name__)
 def plant_environment():
 
     result = {
+        'disease_classifier':
+            {
+                "heathly":False, "disease":"diseasename"
+            },
         'recommend_plant':
             {
                 'apple': '0.0000000222',
@@ -33,7 +38,7 @@ def plant_environment():
             }
     }
     
-    return str(result)
+    return json.dumps(result)
 
 if __name__ == '__main__':
     app.run()
