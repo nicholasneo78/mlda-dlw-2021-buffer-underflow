@@ -1,38 +1,65 @@
-from picamera import PiCamera
-from time import sleep
-from skimage.io import imread
-import numpy as np
-from skimage.transform import resize
-from skimage.color import rgb2gray
-from keras.models import load_model
+from flask import Flask, jsonify
+import random
 
-camera = PiCamera(resolution=(1792,1792))
-camera.start_preview()
-sleep(10)
-camera.capture('/home/pi/Desktop/image.jpg')
-camera.stop_preview()
+app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
-im = imread("image.jpg")
+@app.route('/disease_presence', methods=['GET'])
+def disease_presence():
 
-# resize to 28 x 28
-im_resize = resize(im,(28,28), mode='constant')
+    # model = load_model('model.h5')
 
-# turn the image from color to gray
-im_gray = rgb2gray(im_resize)
+    diseases = {'Pepper bell bacterial spot':{'explanation': 'Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.'}, 
+                'Potato early blight':{'explanation': 'Early blight (EB) is a disease of potato caused by the fungus Alternaria solani. It is found wherever potatoes are grown.'}, 
+                'Potato late blight': {'explanation': 'Late blight, also called potato blight, disease of potato and tomato plants that is caused by the water mold Phytophthora infestans.'}}
 
-# the color of the original set are inverted, so we invert it
-hereim_gray_invert = 255 - im_gray*255
+    result = {
+        'output':
+            {
+                "heathly":False, "disease": random.choice(diseases)
+            }
+    }
+    
+    resp = jsonify(result)
+    resp.status_code = 200
 
-#treat color under threshold as black
-im_gray_invert[im_gray_invert<=90] = 0
+    return resp
 
-model=load_model('mnist_trained_model.h5')
-im_final = im_gray_invert.reshape(1,28,28,1)
+@app.route('/conditions', methods=['GET'])
+def plant_environment():
 
-# the below output is a array of possibility of respective digit
-ans = model.predict(im_final)
-print(ans)
+    result = {
+        'output':
+            {
+                'apple': '0.0000000222',
+                'banana': '0.0000030293',
+                'blackgram': '0.0000006398',
+                'chickpea': '0.0000000000',
+                'coconut': '0.0000411466',
+                'coffee': '0.0000000072',
+                'cotton': '0.0042584073',
+                'grapes': '0.0000000000',
+                'jute': '0.0000617717',
+                'kidneybeans': '0.0000000000',
+                'lentil': '0.0000033268',
+                'maize': '0.0001482871',
+                'mango': '0.0000000002',
+                'mothbeans': '0.0000094367',
+                'mungbean': '0.0045491722',
+                'muskmelon': '0.0543002971',
+                'orange': '0.0181059018',
+                'papaya': '0.0033644827',
+                'pigeonpeas': '0.0000000000',
+                'pomegranate': '0.0056215208',
+                'rice': '0.0000060801',
+                'watermelon': '0.9095264673'
+            }
+    }
+    
+    resp = jsonify(result)
+    resp.status_code = 200
 
-# choose the digit with greatest possibility as predicted dight
-ans = ans[0].tolist().index(max(ans[0].tolist()))
-print("the predicted digit is", ans)
+    return resp
+
+if __name__ == '__main__':
+    app.run()

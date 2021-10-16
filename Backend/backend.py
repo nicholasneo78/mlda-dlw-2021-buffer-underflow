@@ -4,17 +4,30 @@ import random
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
-@app.route('/')
-def plant_environment():
+@app.route('/disease_presence', methods=['GET'])
+def disease_presence():
 
-    diseases = ['Pepper bell bacterial spot', 'Potato early blight', 'Potato late blight']
+    diseases = {'Pepper bell bacterial spot':{'explanation': 'Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.'}, 
+                'Potato early blight':{'explanation': 'Early blight (EB) is a disease of potato caused by the fungus Alternaria solani. It is found wherever potatoes are grown.'}, 
+                'Potato late blight': {'explanation': 'Late blight, also called potato blight, disease of potato and tomato plants that is caused by the water mold Phytophthora infestans.'}}
 
     result = {
-        'disease_classifier':
+        'output':
             {
-                "heathly":False, "disease": random.choice(diseases)
-            },
-        'recommend_plant':
+                "heathly":False, "disease": 'Pepper bell bacterial spot', 'explanation': 'Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.'
+            }
+    }
+    
+    resp = jsonify(result)
+    resp.status_code = 200
+
+    return resp
+
+@app.route('/conditions', methods=['GET'])
+def plant_environment():
+
+    result = {
+        'output':
             {
                 'apple': '0.0000000222',
                 'banana': '0.0000030293',
@@ -43,7 +56,6 @@ def plant_environment():
     
     resp = jsonify(result)
     resp.status_code = 200
-    print(resp)
 
     return resp
 
