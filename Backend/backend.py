@@ -1,15 +1,18 @@
-from flask import Flask
-import json
+from flask import Flask, jsonify
+import random
 
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 @app.route('/')
 def plant_environment():
 
+    diseases = ['Pepper bell bacterial spot', 'Potato early blight', 'Potato late blight']
+
     result = {
         'disease_classifier':
             {
-                "heathly":False, "disease":"diseasename"
+                "heathly":False, "disease": random.choice(diseases)
             },
         'recommend_plant':
             {
@@ -38,7 +41,11 @@ def plant_environment():
             }
     }
     
-    return json.dumps(result)
+    resp = jsonify(result)
+    resp.status_code = 200
+    print(resp)
+
+    return resp
 
 if __name__ == '__main__':
     app.run()
