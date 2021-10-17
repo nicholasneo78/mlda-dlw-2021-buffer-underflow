@@ -150,19 +150,20 @@
                         <div class="col-md-3">
                         	<div class="cta-btn wow bounceInRight" data-wow-delay="0.4s">
                                 <input type="file" id="plantleaf"  name="plantleaf"/> 
-                                <button class = "tn btn-default btn-lg-xl" onclick="uploadFile()"> Upload!</button>
-                                <script>
-                                    async function uploadFile() {
-                                        let formData = new FormData();           
-                                        formData.append("file", plantleaf.files[0]);
-                                        console.log(plantleaf.files[0])
-                                        await fetch('/upload.php', {
-                                          method: "POST", 
-                                          body: formData
-                                        });    
-                                        alert('The file has been uploaded successfully.');
-                                    }
-                                    </script>
+                                <a HREF = "file:///Users/blitzborg/Desktop/MLDA/mlda-dlw-2021-buffer-underflow/website/health.html"><button class = "tn btn-default btn-lg-xl" onclick="uploadFile()" > Upload!</button>
+                                    <script>
+                                        async function uploadFile() {
+                                            let formData = new FormData();           
+                                            formData.append("file", plantleaf.files[0]);
+                                            console.log(plantleaf.files[0])
+                                            await fetch('/upload.php', {
+                                              method: "POST", 
+                                              body: formData
+                                            });    
+                                            alert('The file has been uploaded successfully.');
+                                        }
+                                        </script></a>
+                                
                         	</div>
                         </div>
                         

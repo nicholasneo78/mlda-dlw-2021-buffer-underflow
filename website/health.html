@@ -1,0 +1,169 @@
+<!doctype html>
+<!--
+	Template:	 Unika - Responsive One Page HTML5 Template
+	Author:		 imransdesign.com
+	URL:		 http://imransdesign.com/
+    Designed By: https://www.behance.net/poljakova
+	Version:	1.0	
+-->
+<html lang="en-US">
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Dr Plant website</title>
+		<meta name="description" content="Unika - Responsive One Page HTML5 Template">
+		<meta name="keywords" content="HTML5, Bootsrtrap, One Page, Responsive, Template, Portfolio" />
+		<meta name="author" content="imransdesign.com">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Google Fonts  -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'> <!-- Body font -->
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> <!-- Navbar font -->
+
+		<!-- Libs and Plugins CSS -->
+		<link rel="stylesheet" href="inc/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="inc/animations/css/animate.min.css">
+		<link rel="stylesheet" href="inc/font-awesome/css/font-awesome.min.css"> <!-- Font Icons -->
+		<link rel="stylesheet" href="inc/owl-carousel/css/owl.carousel.css">
+		<link rel="stylesheet" href="inc/owl-carousel/css/owl.theme.css">
+
+		<!-- Theme CSS -->
+        <link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/mobile.css">
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="css/skin/cool-gray.css">
+        <!-- <link rel="stylesheet" href="css/skin/ice-blue.css"> -->
+
+	</head>
+
+    <body data-spy="scroll" data-target="#main-navbar">
+        <div class="page-loader"></div>  <!-- Display loading image while page loads -->
+    	<div class="body">
+
+            <!-- Begin about section -->
+			<section id="about-section" class="page bg-style1">
+                <!-- Begin page header-->
+                <div class="page-header-wrapper">
+                    <div class="container">
+                        <div class="page-header text-center wow fadeInUp" data-wow-delay="0.3s">
+                            <h1>Plant Health Details</h1>
+                            <div class="devider"></div>
+                            <p class="subtitle">Here is the detailed analytics for the health of your plant.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End page header-->
+
+                
+              
+          <!-- Begin cta -->
+          <section id="cta-section">
+          	<div class="cta">
+            	<div class="container">
+                	<div class="row">
+                        <script>
+                            fetch('http://teokj.pythonanywhere.com/disease_presence')
+                                .then(function (response) {
+                                    return response.json();
+                                })
+                                .then(function (data) {
+                                    appendData(data);
+                                })
+                                .catch(function (err) {
+                                    console.log('error: ' + err);
+                                });
+                            function appendData(data) {
+                                var mainContainer = document.getElementById("myData");
+                                
+                                var div = document.createElement("div");
+                                div.innerHTML = 'Name: ' + data.output ;
+                                mainContainer.appendChild(div);
+                                
+                            }
+                        </script>
+                        <h2 style="padding-left: 40%;">Plant Health Details</h2>
+                        <br>
+                        <br>
+
+                    	<div class="col-md-9" style="padding-left: 40%;">
+                        	
+                            <h3 style="padding-left: 10%;"> Disease Found</h3>
+                            <h4 style="padding-left: 1%;">Pepper bell bacterial spot</h4>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-md-6">
+                        	
+                            <h4 style="padding-left: 1%;"> About the Disease</h4>
+                            <p style="padding-left: 1%;">Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.</p>
+                        </div>
+
+                        <div class="col-md-6">
+                        	
+                            <h4 style="padding-left: 1%;"> Cure for the Disease</h4>
+                            <p style="padding-left: 1%;">The primary management strategy of bacterial spot begins with use of certified pathogen-free seed and disease-free transplants. The bacteria do not survive well once host material has decayed, so crop rotation is recommended.</p>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>             
+                        <br>
+                        <br>
+                        <br>
+
+                        
+                    	<div class="col-md-9" style="padding-left: 40%;">
+                        	
+                            <h3 style="padding-left: 10%;"> References</h3>
+                        </div>
+                        <a href="https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/Bacterialspot.aspx"><p style="padding-left: 1%;">https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/Bacterialspot.aspx</p></a>
+                        <a href="https://extension.wvu.edu/lawn-gardening-pests/plant-disease/fruit-vegetable-diseases/bacterial-leaf-spot-of-pepper"><p style="padding-left: 1%;">https://extension.wvu.edu/lawn-gardening-pests/plant-disease/fruit-vegetable-diseases/bacterial-leaf-spot-of-pepper</p></a>
+                            
+                        
+                    </div> <!-- /.row -->
+                </div> <!-- /.container -->
+                           
+            </div>
+          </section>
+          <!-- End cta -->
+              
+
+   
+        
+        
+        
+        <!-- Plugins JS -->
+		<script src="inc/jquery/jquery-1.11.1.min.js"></script>
+		<script src="inc/bootstrap/js/bootstrap.min.js"></script>
+		<script src="inc/owl-carousel/js/owl.carousel.min.js"></script>
+		<script src="inc/stellar/js/jquery.stellar.min.js"></script>
+		<script src="inc/animations/js/wow.min.js"></script>
+        <script src="inc/waypoints.min.js"></script>
+		<script src="inc/isotope.pkgd.min.js"></script>
+		<script src="inc/classie.js"></script>
+		<script src="inc/jquery.easing.min.js"></script>
+		<script src="inc/jquery.counterup.min.js"></script>
+		<script src="inc/smoothscroll.js"></script>
+
+		<!-- Theme JS -->
+		<script src="js/theme.js"></script>
+
+    </body> 
+        
+            
+</html>
