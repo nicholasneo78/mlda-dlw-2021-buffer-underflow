@@ -7,17 +7,24 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 @app.route('/disease_presence', methods=['GET'])
 def disease_presence():
 
-    diseases = {'Pepper bell bacterial spot':{'explanation': 'Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.'}, 
-                'Potato early blight':{'explanation': 'Early blight (EB) is a disease of potato caused by the fungus Alternaria solani. It is found wherever potatoes are grown.'}, 
-                'Potato late blight': {'explanation': 'Late blight, also called potato blight, disease of potato and tomato plants that is caused by the water mold Phytophthora infestans.'}}
+    diseases = [{
+                "heathly":False, "disease": 'Pepper bell bacterial spot', 'explanation': 'Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.',
+                'remedy':'The primary management strategy of bacterial spot begins with use of certified pathogen-free seed and disease-free transplants. The bacteria do not survive well once host material has decayed, so crop rotation is recommended.'
+                },
+                {
+                "heathly":False, "disease": 'Potato early blight', 'explanation': 'Early blight (EB) is a disease of potato caused by the fungus Alternaria solani. It is found wherever potatoes are grown.',
+                'remedy':'The following measures will help prevent the occurrence of serious EB outbreaks, (1) Plant only diseasefree, certified seed. (2) Follow a complete and regular foliar fungicide spray program. (3) Practice good killing techniques to lessen tuber infections.'
+                },
+                {
+                "heathly":False, "disease": 'Potato late blight', 'explanation': 'Late blight, also called potato blight, disease of potato and tomato plants that is caused by the water mold Phytophthora infestans.',
+                'remedy':'The disease can be managed with a timely application of fungicide, though epidemics can occur rapidly once crops are infected.'
+                }   
+                ]
 
     result = {
-        'output':
-            {
-                "heathly":False, "disease": 'Pepper bell bacterial spot', 'explanation': 'Bacterial spot, caused by Xanthomonas euvesicatoria and Xanthomonas perforans is one of the most devastating diseases of pepper and tomato grown in warm, moist environments.'
-            }
+        'output': random.choice(diseases)
     }
-    
+
     resp = jsonify(result)
     resp.status_code = 200
 
@@ -53,7 +60,7 @@ def plant_environment():
                 'watermelon': '0.9095264673'
             }
     }
-    
+
     resp = jsonify(result)
     resp.status_code = 200
 
