@@ -993,7 +993,7 @@ var OrdersChart = (function() {
             ticks: {
               callback: function(value) {
                 if (!(value % 10)) {
-                  //return '$' + value + 'k'
+                  // return '$' + value + 'k'
                   return value
                 }
               }
@@ -1019,10 +1019,10 @@ var OrdersChart = (function() {
         }
       },
       data: {
-        labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels: ['Apple', 'Mango', 'Carrot', 'Potato', 'Watermelon', 'Strawberry'],
         datasets: [{
           label: 'Sales',
-          data: [25, 20, 30, 22, 17, 29]
+          data: [55, 20, 30, 22, 17, 29]
         }]
       }
     });
@@ -1073,7 +1073,7 @@ var SalesChart = (function() {
             ticks: {
               callback: function(value) {
                 if (!(value % 10)) {
-                  return '$' + value + 'k';
+                  return  value + ' ppm';
                 }
               }
             }
@@ -1090,7 +1090,7 @@ var SalesChart = (function() {
                 content += '<span class="popover-body-label mr-auto">' + label + '</span>';
               }
 
-              content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
+              content += '<span class="popover-body-value">' + yLabel + ' ppm</span>';
               return content;
             }
           }
@@ -1099,8 +1099,8 @@ var SalesChart = (function() {
       data: {
         labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          label: 'Performance',
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+          label: 'd',
+          data: [20, 20, 10, 30, 15, 25, 20, 30, 20]
         }]
       }
     });
